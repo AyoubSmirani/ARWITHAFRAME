@@ -1,0 +1,57 @@
+<!--<a-scene embedded arjs>
+   
+  <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+  <a-assets>
+    <a-asset-item id="crate-obj" src="/assets/FinalBaseMesh.obj"></a-asset-item>
+    
+  </a-assets>
+    <a-marker-camera preset='hiro'>
+        
+      <a-box id="leftBumper" rotation="0 0 0" position='-1 0.05 0' depth="1.95" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:blue;'></a-box>
+      <a-box id="rightBumper" rotation="0 180 0" position='1 0.05 0' depth="1.95" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:blue;'></a-box>
+      <a-box id="topBumper" rotation="0 90 0" position='0 0.05 -1' depth="1.95" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:purple;'></a-box>
+      <a-box id="bottomBumper" rotation="0 270 0" position='0 0.05 1' depth="1.95" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:green;'></a-box>
+      <-- Paddles 
+      <a-box id="topPaddle" rotation="0 90 0" position='0 0.05 -0.86' depth="0.49" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:purple;'></a-box>
+      <a-box id="bottomPaddle" rotation="0 270 0" position='0 0.05 0.86' depth="0.49" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:green;'></a-box>
+       <-- <a-animation attribute="rotation" dur="3000" to="360 360 0" repeat="indefinite" easing="linear" ></a-animation> 
+      <a-sphere id="mySphere" position="0 0 0" color="yellow" radius="0.05"></a-sphere>
+     
+      <a-obj-model
+      src="#crate-obj"
+      position="0 0 0"
+      rotation="0 0 0"
+      [scale]="modelScale"
+      material="opacity: 0.9; side: double; color: orange;"
+    ></a-obj-model>
+    </a-marker-camera>
+  </a-scene>
+  <div style="width: 100%; height: 500px; background: black;">
+    <button (click)="incrementScale()">Increase Scale</button>
+    <button (click)="decrementScale()">Decrease Scale</button>
+  </div>-->
+
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" embedded arjs>
+    <a-assets>
+      <a-asset-item id="current-model" [attr.src]="modelSrc"></a-asset-item>
+      <img id="advertisement" src="/assets/ayo.png">
+    </a-assets>
+ <!-- <a-plane link="href: index.html; title: My Homepage; image: #advertisement" src="#advertisement"></a-plane> -->
+  
+    <a-marker-camera preset='hiro'>
+      <a-entity #modelContainer></a-entity>
+     
+    </a-marker-camera>
+    
+  </a-scene>
+
+  <div style="width: 100%; height: 500px; background: rgba(0, 0, 0, 0.381);">
+  
+    <button (click)="incrementScale()">Increase Scale</button>
+    <button (click)="decrementScale()">Decrease Scale</button>
+    <button (click)="changeModelSrc()">trees</button>
+    <button (click)="changeModelSrc()">mesh</button>
+    <button (click)="changeColortOWHITE()">mesh</button>
+    <app-color-picker style="position: absolute; top: 700px;" [color]="color"></app-color-picker>
+  </div>
+  
