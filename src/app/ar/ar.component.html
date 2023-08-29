@@ -31,16 +31,16 @@
     <button (click)="decrementScale()">Decrease Scale</button>
   </div>-->
 
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black" embedded arjs>
+  <a-scene loading-screen="dotsColor: red; backgroundColor: black" embedded arjs = 'trackingMethod:best;'>
     <a-assets>
       <a-asset-item id="current-model" [attr.src]="modelSrc"></a-asset-item>
       <img id="advertisement" src="/assets/ayo.png">
     </a-assets>
  <!-- <a-plane link="href: index.html; title: My Homepage; image: #advertisement" src="#advertisement"></a-plane> -->
   
-    <a-marker-camera preset='hiro'>
-      <a-entity #modelContainer></a-entity>
-     
+    <a-marker-camera preset='hiro' >
+    <!--<a-entity #modelContainer></a-entity>-->  
+    <a-plane src="/assets/testt.png" position="0 0 0" rotation="-90 -0 0" width="4" height="4" color="#7BC8A4"></a-plane>
     </a-marker-camera>
     
   </a-scene>

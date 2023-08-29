@@ -344,7 +344,7 @@ export class ArComponent {
    console.log(three)*/
    newModel.setAttribute('src', `#current-model`);
    newModel.setAttribute('position', '0 0 0');
-   newModel.setAttribute('rotation', '0 0 0');
+   newModel.setAttribute('rotation', '-90 -0 0');
    newModel.setAttribute('scale', this.baseScale.toString());
    newModel.setAttribute('material', `opacity: 0.9; side: double; color: ${this.color};`);
  //  newModel.setAttribute('light', "color: #AFA; intensity: 1.5");
