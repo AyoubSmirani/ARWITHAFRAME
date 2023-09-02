@@ -1,13 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChild,NgZone, ViewContainerRef, Input } from '@angular/core';
 import { ColorService } from '../color.service';
 //import { Cmyk, ColorPickerService } from 'ngx-color-picker';
-
+declare global {
+  interface Window {
+    AFRAME: any;
+  }
+}
 @Component({
   selector: 'app-ar',
   templateUrl: './ar.component.html',
   styleUrls: ['./ar.component.css']
 })
-export class ArComponent {
+export class ArComponent implements OnInit{
   /* arScene:any; 
      //for keeping track of scores
       player1Score:number = 0;
@@ -322,13 +326,22 @@ export class ArComponent {
  @ViewChild('modelContainer', { static: false })
   modelContainer!: ElementRef;
   
+  
+  @ViewChild('test') test!: ElementRef;
+
+
+
  private baseScale = 0.1;
  private scaleFactor = 0.05;
  public modelSrc = '/assets/FinalBaseMesh.obj';
  private currentModel: any = null; // Hold a reference to the current model
 
  ngAfterViewInit() {
+  this.test.nativeElement.addEventListener('click', (evt: Event) => {
+    console.log('This 2D element was clicked!');
+  });
    this.loadModel();
+
  }
 
  private loadModel() {
@@ -380,6 +393,12 @@ export class ArComponent {
     this.loadModel(); // Load the new model
 
 }
+changeModelSrc3() {
+  this.modelSrc = '/assets/koffie.obj';
+  
+    this.loadModel(); // Load the new model
+
+}
 
 
 
@@ -398,6 +417,20 @@ ngOnInit() {
   this.colorService.getColor().subscribe(newColor => {
     this.color = newColor;
   });
+  this.initFrame();
+
+}
+initFrame(){
+  const AFRAME = window.AFRAME;
+
+  AFRAME.registerComponent('markerhandler', {
+    init: function () {
+      this.el.sceneEl.addEventListener('markerLost', this.onMarkerLost.bind(this));
+    },
+    onMarkerLost: function (event:any) {
+console.log('marker Lost')
+    }
+  });
 }
 
 updateColor(newColor: string) {
@@ -407,6 +440,8 @@ updateColor(newColor: string) {
 
 public hue!: string
  public color: string ='green'
+
+
 // color picker
 
 /*public toggle: boolean = false;
